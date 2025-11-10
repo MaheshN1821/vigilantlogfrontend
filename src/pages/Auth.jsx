@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Cpu, ArrowRight } from "lucide-react";
 import "../styles/auth.css";
 
 export default function Auth() {
@@ -12,6 +12,7 @@ export default function Auth() {
     email: "",
     password: "",
     confirmPassword: "",
+    deviceName: "",
   });
 
   const navigate = useNavigate();
@@ -19,17 +20,16 @@ export default function Auth() {
   const handleInputChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
- const handleSubmit = (e) => {
-   e.preventDefault();
-   console.log("Form submitted:", formData);
-   // After login/signup → go to Landing Page
-   navigate("/landing");
- };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    navigate("/landing");
+  };
 
   return (
     <div className="auth-root">
       <div className="auth-card">
+        {/* Toggle between Login/Register */}
         <div className="auth-toggle">
           <button
             className={"toggle-btn " + (isLogin ? "active" : "")}
@@ -38,7 +38,9 @@ export default function Auth() {
             Login
           </button>
           <button
-            className={"toggle-btn " + (!isLogin ? "active" : "")}
+            className={
+              "toggle-btn hide-on-mobile " + (!isLogin ? "active" : "")
+            }
             onClick={() => setIsLogin(false)}
           >
             Register
@@ -55,6 +57,7 @@ export default function Auth() {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
+          {/* Full Name (Register only) */}
           {!isLogin && (
             <label className="field">
               <span className="label">Full Name</span>
@@ -71,6 +74,7 @@ export default function Auth() {
             </label>
           )}
 
+          {/* Email */}
           <label className="field">
             <span className="label">Email</span>
             <div className="input-wrap">
@@ -86,6 +90,7 @@ export default function Auth() {
             </div>
           </label>
 
+          {/* Password */}
           <label className="field">
             <span className="label">Password</span>
             <div className="input-wrap">
@@ -102,13 +107,13 @@ export default function Auth() {
                 type="button"
                 className="eye-btn"
                 onClick={() => setShowPassword((s) => !s)}
-                aria-label="Toggle password visibility"
               >
                 {showPassword ? <EyeOff /> : <Eye />}
               </button>
             </div>
           </label>
 
+          {/* Confirm Password (Register only) */}
           {!isLogin && (
             <label className="field">
               <span className="label">Confirm Password</span>
@@ -126,7 +131,6 @@ export default function Auth() {
                   type="button"
                   className="eye-btn"
                   onClick={() => setShowConfirmPassword((s) => !s)}
-                  aria-label="Toggle confirm password"
                 >
                   {showConfirmPassword ? <EyeOff /> : <Eye />}
                 </button>
@@ -134,27 +138,53 @@ export default function Auth() {
             </label>
           )}
 
+          {/* Device Name (Shown for both Login & Register) */}
+          <label className="field">
+            <span className="label">Device Name</span>
+            <div className="input-wrap">
+              <Cpu className="icon" />
+              <input
+                name="deviceName"
+                value={formData.deviceName}
+                onChange={handleInputChange}
+                placeholder="Enter your exact device name"
+                required
+              />
+            </div>
+          </label>
+
+          <p className="device-tip">
+            💡 To find your Device Name: Go to <b>Settings → System → About</b>{" "}
+            → see your <b>Device Name</b>. It’s case-sensitive.
+          </p>
+
+          {/* Terms of Service (Register only) */}
           {!isLogin ? (
             <label className="terms">
               <input type="checkbox" required />
               <span>
                 I agree to the <a href="#">Terms of Service</a> and{" "}
-                <a href="#">Privacy Policy</a>
+                <a href="#">Privacy Policy</a>.
               </span>
             </label>
           ) : null}
 
+          {/* Submit Button */}
           <button type="submit" className="submit-btn">
             <span>{isLogin ? "Sign In" : "Create Account"}</span>
             <ArrowRight className="arrow" />
           </button>
         </form>
 
+        {/* Footer links */}
         <div className="auth-footer">
           {isLogin ? (
             <span>
-              Don't have an account?{" "}
-              <button className="link-btn" onClick={() => setIsLogin(false)}>
+              Don’t have an account?{" "}
+              <button
+                className="link-btn hide-on-mobile"
+                onClick={() => setIsLogin(false)}
+              >
                 Sign up
               </button>
             </span>

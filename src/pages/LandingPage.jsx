@@ -45,12 +45,7 @@ export default function LandingPage() {
             <a href="/dashboard" className="btn btn-primary">
               Go to Dashboard
             </a>
-            <a
-              href="https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/?utm_source=chatgpt.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline"
-            >
+            <a href="/installer" className="btn btn-primary">
               Download Installer
             </a>
           </div>

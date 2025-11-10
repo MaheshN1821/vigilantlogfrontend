@@ -126,13 +126,16 @@
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 100px 20px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #fff;
 }
 
 .hero-inner h1 {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: 900;
   margin-bottom: 16px;
 }

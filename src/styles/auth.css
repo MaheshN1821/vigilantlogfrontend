@@ -76,3 +76,22 @@
 
 .auth-footer{ margin-top:14px; text-align:center; color:var(--muted) }
 .link-btn{ background:none; border:0; color:var(--primary); cursor:pointer; font-weight:600 }
+
+/* Hide Register on Mobile */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
+/* Device Tip Styling */
+.device-tip {
+  font-size: 0.8rem;
+  color: #374151;
+  background: #f1f5f9;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+

@@ -9,6 +9,8 @@ import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import SystemHealth from "./pages/SystemHealth";
 import Analysis from "./pages/Analysis";
+import InstallerGuide from "./pages/InstallerGuide";
+
 
 export default function App() {
   return (
@@ -20,6 +22,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/system-health" element={<SystemHealth />} />
         <Route path="/analysis" element={<Analysis />} />
+        <Route path="/installer" element={<InstallerGuide />} />
         <Route path="*" element={<Navigate to="/auth" replace />} />
       </Routes>
     </Router>
